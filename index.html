@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HICM System</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/clock.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body onload="initClock()">
+    <div class="sidebar open">
+      <div class="logo-details">
+        <div class="logo_name"><img src="img/logo.jpg" width="85%" /></div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="#">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+      </ul>
+    </div>
+
+    <section class="home-section">
+      <div class="text">Dashboard</div>
+      <hr / style="width: 97%;margin: 0px auto 30px auto;">
+      <div class="clear"></div>
+
+      <div class="col-md-12 header-top-area">
+        <div class="col-sm-3 header-electricity">
+          <div class="Amount-img"><img src="img/bolt.png" width="100%" /></div>
+          <div class="Amount-text">
+            <p class="Amount-text-p1">Amount for Month</p>
+            <p class="Amount-text-p2">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="bolt"
+                class="Amount-for-Month"
+                id="electricity_A_F_M"
+                data-msg="Please enter Electricity Amount for Month"
+              />
+            </p>
+
+            <p class="Amount-text-p3">Per Unit Cost</p>
+            <p class="Amount-text-p4">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="bolt"
+                class="Per-Unit-Cost"
+                id="electricity_unit_cost"
+                data-msg="Please enter Electricity Per Unit Cost"
+              />
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-3 header-water">
+          <div class="Amount-img">
+            <img src="img/water-drop.png" width="100%" />
+          </div>
+          <div class="Amount-text">
+            <p class="Amount-text-p1">Amount for Month</p>
+            <p class="Amount-text-p2">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="gas"
+                class="Amount-for-Month"
+                id="water_A_F_M"
+                data-msg="Please enter Water Amount for Month"
+              />
+            </p>
+
+            <p class="Amount-text-p3">Per Unit Cost</p>
+            <p class="Amount-text-p4">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="bolt"
+                class="Per-Unit-Cost"
+                id="water_unit_cost"
+                data-msg="Please enter Water Per Unit Cost"
+              />
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-3 header-gas">
+          <div class="Amount-img">
+            <img src="img/gas-cylinder.png" width="100%" />
+          </div>
+          <div class="Amount-text">
+            <p class="Amount-text-p1">Amount for Month</p>
+            <p class="Amount-text-p2">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="gas"
+                class="Amount-for-Month"
+                id="gas_A_F_M"
+                data-msg="Please enter Gas Amount for Month"
+              />
+            </p>
+
+            <p class="Amount-text-p3">Per Unit Cost</p>
+            <p class="Amount-text-p4">
+              <span>Rs.</span
+              ><input
+                type="number"
+                name="bolt"
+                class="Per-Unit-Cost"
+                id="gas_unit_cost"
+                data-msg="Please enter Gas Per Unit Cost"
+              />
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-3 header-date">
+          <div class="Amount-img">
+            <img src="img/calendar.png" width="100%" />
+          </div>
+          <div class="header-time datetime Amount-text">
+            <div class="date">
+              <span id="month">Month</span>: <span id="daynum">00</span>:
+              <span id="year">Year</span>
+            </div>
+            <div class="time">
+              <span id="hour">00</span>:
+              <span id="minutes">00</span>
+              <span id="period">PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <hr / style="width: 97%;margin: 30px auto">
+
+      <div class="container-fluid meter-cal">
+        <div class="col-lg-4 Electricity-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-2 Electricity-main-img">
+              <img src="img/bolt.png" width="100%" />
+            </div>
+            <div class="col-lg-10 Electricity-main-txt">
+              <h3>Electricity</h3>
+            </div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 Electricity-meter">
+            <div class="col-lg-5 Electricity-meter-img">
+              <img src="img/speedometer.png" width="100%" />
+            </div>
+            <div class="col-lg-6 Electricity-meter-txt">
+              <h6>Amount As Of Today</h6>
+              <h2><h2 id="amount_as_today_electricity">0</h2><span style="position: relative;bottom: 20px;left: 130px;font-size: 13px;font-weight: bold;">UNITS</span></h2>
+            </div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text">
+              <h6>Totel Electricity Consumption</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num">
+              <h5 id="electricity-units">0</h5>
+              <span>KWH</span>
+            </div>
+          </div>
+
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text totel-bill-txt">
+              <h6>Totel Bill For Month</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num"  style="top: 30px !important;">
+              <p class="totel-bill">
+                <span>Rs </span> <p id="totel_bill_electricity"  class="totel-bill2">0.00</p>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 Water-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-2 Electricity-main-img">
+              <img src="img/water-drop.png" width="100%" />
+            </div>
+            <div class="col-lg-10 Electricity-main-txt"><h3>Water</h3></div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 Electricity-meter">
+            <div class="col-lg-5 Electricity-meter-img">
+              <img src="img/speedometer (2).png" width="100%" />
+            </div>
+            <div class="col-lg-6 Electricity-meter-txt">
+              <h6>Amount As Of Today</h6>
+              <h2><h2 id="amount_as_today_water">0</h2><span style="position: relative;bottom: 20px;left: 130px;font-size: 13px;font-weight: bold;">UNITS</span></h2>
+            </div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text">
+              <h6>Totel Water Consumption</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num">
+              <h5 id="water-units">0</h5>
+              <span>Liters</span>
+            </div>
+          </div>
+
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text totel-bill-txt">
+              <h6>Totel Bill For Month</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num" style="top: 30px !important;">
+              <p class="totel-bill">
+                <span>Rs </span> <p id="totel_bill_water"   class="totel-bill2">0.00</p>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 Gas-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-2 Electricity-main-img">
+              <img src="img/gas-cylinder.png" width="100%" />
+            </div>
+            <div class="col-lg-10 Electricity-main-txt"><h3>Gas</h3></div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 Electricity-meter">
+            <div class="col-lg-5 Electricity-meter-img">
+              <img src="img/speedometer (1).png" width="100%" />
+            </div>
+            <div class="col-lg-6 Electricity-meter-txt">
+              <h6>Amount As Of Today</h6>
+              <h2><h2 id="amount_as_today_gas">0</h2><span style="position: relative;bottom: 20px;left: 130px;font-size: 13px;font-weight: bold;">UNITS</span></h2>
+            </div>
+          </div>
+          <hr / style="width: 90%;margin-left: auto;margin-right: auto;">
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text">
+              <h6>Totel Gas Consumption</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num">
+              <h5 id="gas-units">0</h5>
+              <span>Kg</span>
+            </div>
+          </div>
+
+          <div class="col-lg-12 totel-unit">
+            <div class="col-lg-7 totel-unit-text totel-bill-txt">
+              <h6>Totel Bill For Month</h6>
+            </div>
+            <div class="col-lg-5 totel-unit-num" style="top: 30px !important;">
+              <p class="totel-bill">
+                <span>Rs</span><p id="totel_bill_gas"  class="totel-bill2">0.00</p>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="container-fluid Predictive-Bill">
+        <div class="col-lg-4 Electricity-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-3 Amount-img">
+              <img src="img/bolt.png" width="100%" />
+            </div>
+            <div class="col-lg-8 Amount-text2">
+              <p class="Amount-text-p1">Predictive Bill For Month</p>
+              <p class="Amount-text-p2"><span>Rs </span><p id="electricity_P_B_F_M" style="position: relative;bottom: 44px;left: 25px;font-size: 25px;font-weight: bold;">0.00</p></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 Water-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-3 Amount-img">
+              <img src="img/water-drop.png" width="100%" />
+            </div>
+            <div class="col-lg-8 Amount-text2">
+              <p class="Amount-text-p1">Predictive Bill For Mounth</p>
+              <p class="Amount-text-p2"><span>Rs </span><p id="water_P_B_F_M" style="position: relative;bottom: 44px;left: 25px;font-size: 25px;font-weight: bold;">0.00</p></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 Gas-main">
+          <div class="col-lg-12 Electricity">
+            <div class="col-lg-3 Amount-img">
+              <img src="img/gas-cylinder.png" width="100%" />
+            </div>
+            <div class="col-lg-8 Amount-text2">
+              <p class="Amount-text-p1">Predictive Bill For Mounth</p>
+              <p class="Amount-text-p2"><span>Rs </span><p id="gas_P_B_F_M" style="position: relative;bottom: 44px;left: 25px;font-size: 25px;font-weight: bold;">0.00</p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="container-fluid Predictive-Bill">
+        <div class="col-lg-6 totel-Predictive" style="margin-right: 41px">
+          <div class="col-lg-7 Predictive-Bill-txt">
+            <h6>Predictive Bill All Usages</h6>
+          </div>
+          <div class="col-lg-5 Predictive-Bill-amont">
+            <p class="Predictive-Bill-p"><span>Rs </span><p id="ALL_E_W_G1" style="position: relative;bottom: 66px;left: 29px;font-size: 30px;font-weight: bold;">0.00</p></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script type="text/javascript">
+    function updateClock() {
+      var now = new Date();
+      var mo = now.getMonth(),
+        dnum = now.getDate(),
+        yr = now.getFullYear(),
+        hou = now.getHours(),
+        min = now.getMinutes(),
+        sec = now.getSeconds(),
+        pe = "AM";
+
+      if (hou >= 12) {
+        pe = "PM";
+      }
+      if (hou == 0) {
+        hou = 12;
+      }
+      if (hou > 12) {
+        hou = hou - 12;
+      }
+
+      Number.prototype.pad = function (digits) {
+        for (var n = this.toString(); n.length < digits; n = 0 + n);
+        return n;
+      };
+
+      var months = [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+      ];
+      var week = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      var ids = [
+        "month",
+        "daynum",
+        "year",
+        "hour",
+        "minutes",
+        "seconds",
+        "period",
+      ];
+      var values = [
+        months[mo],
+        dnum.pad(2),
+        yr,
+        hou.pad(2),
+        min.pad(2),
+        sec.pad(2),
+        pe,
+      ];
+      for (var i = 0; i < ids.length; i++)
+        document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+    }
+
+    function initClock() {
+      loadLocalData();
+      updateClock();
+      window.setInterval("updateClock()", 1);
+      
+    }
+    const apiKey = "QN0RZOTPRRYMUZPS";
+    const channelId = "2578696";
+
+          // Save local data
+    function saveLocalData() {
+        const electricity_A_F_M = document.getElementById("electricity_A_F_M").value;
+        const electricity_unit_cost = document.getElementById("electricity_unit_cost").value;
+        const water_A_F_M = document.getElementById("water_A_F_M").value;
+        const water_unit_cost = document.getElementById("water_unit_cost").value;
+        const gas_A_F_M = document.getElementById("gas_A_F_M").value;
+        const gas_unit_cost = document.getElementById("gas_unit_cost").value;
+
+        const data = {
+          electricity: { amount: electricity_A_F_M, cost: electricity_unit_cost },
+          water: { amount: water_A_F_M, cost: water_unit_cost },
+          gas: { amount: gas_A_F_M, cost: gas_unit_cost },
+        };
+
+        localStorage.setItem("utilityData", JSON.stringify(data));
+        // alert("Data saved successfully!");
+      }
+
+      // Load local data
+      function loadLocalData() {
+        const data = JSON.parse(localStorage.getItem("utilityData"));
+        if (data) {
+          document.getElementById("electricity_A_F_M").value = data.electricity.amount || "sdsds";
+          document.getElementById("electricity_unit_cost").value = data.electricity.cost || "dsds";
+          document.getElementById("water_A_F_M").value = data.water.amount || "dsd";
+          document.getElementById("water_unit_cost").value = data.water.cost || "sdsds";
+          document.getElementById("gas_A_F_M").value = data.gas.amount || "21212";
+          document.getElementById("gas_unit_cost").value = data.gas.cost || "1212";
+          disableInputIfExpired();
+        }
+      }
+
+
+function initializeStartDate() {
+
+    let startDate = localStorage.getItem("inputStartDate");
+
+    if (!startDate) {
+      // If no start date exists, set the current date as the start date
+      const currentDate = new Date();
+      startDate = currentDate.toISOString(); // Save as ISO string
+      localStorage.setItem(startDateKey, startDate);
+    }
+    return new Date(startDate);
+
+  }
+
+  function disableInputIfExpired() {
+    const startDate = initializeStartDate();
+    const currentDate = new Date();
+
+    // Calculate the difference in days
+    const diffInMs = currentDate - startDate;
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+
+    // If more than 30 days have passed, disable the input
+    if (diffInDays < 30) {
+      document.getElementById("electricity_A_F_M").disabled = true
+          document.getElementById("electricity_unit_cost").disabled = true;
+          document.getElementById("water_A_F_M").disabled = true;
+          document.getElementById("water_unit_cost").disabled = true;
+          document.getElementById("gas_A_F_M").disabled = true;
+          document.getElementById("gas_unit_cost").disabled = true;
+      console.log("Input is disabled as 30 days have passed.");
+    } else {
+      document.getElementById("electricity_A_F_M").disabled = false;
+          document.getElementById("electricity_unit_cost").disabled = false;
+          document.getElementById("water_A_F_M").disabled = false;
+          document.getElementById("water_unit_cost").disabled = false;
+          document.getElementById("gas_A_F_M").disabled = false;
+          document.getElementById("gas_unit_cost").disabled = false;
+    }
+  }
+
+    function fetchData() {
+      const electricity_A_F_M =
+        document.getElementById("electricity_A_F_M").value;
+      const electricity_unit_cost = document.getElementById(
+        "electricity_unit_cost"
+      ).value;
+
+      const water_A_F_M = document.getElementById("water_A_F_M").value;
+      const water_unit_cost = document.getElementById("water_unit_cost").value;
+
+      const gas_A_F_M = document.getElementById("gas_A_F_M").value;
+      const gas_unit_cost = document.getElementById("gas_unit_cost").value;
+
+      // console.log(electricity_A_F_M / electricityAmount / 30);
+
+      const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=1`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Extract the latest feed data
+          const latestFeed = data.feeds[0];
+
+          console.log("latestFeed: ", latestFeed);
+
+          const electricityUnits = latestFeed.field6;
+          const waterUnits = latestFeed.field2;
+          const gasUnits = latestFeed.field7/1000;
+
+          // Update Electricity data
+          if (electricity_A_F_M != "" && electricity_unit_cost != "" && electricityUnits != null) {
+            
+            document.getElementById("amount_as_today_electricity").innerText = (
+              electricity_A_F_M /
+              electricity_unit_cost /
+              30
+            ).toFixed(2);
+            
+            document.getElementById("electricity-units").innerText =
+              electricityUnits;
+            document.getElementById("totel_bill_electricity").innerText = (
+              ((electricity_A_F_M /
+              electricity_unit_cost /
+              30)*electricityUnits)*30
+            ).toFixed(2);
+            document.getElementById("electricity_P_B_F_M").innerText = (
+              ((electricity_A_F_M /electricity_unit_cost)*electricityUnits)*30
+            ).toFixed(2);
+          }
+
+          if (water_A_F_M != "" && water_unit_cost != "" && waterUnits != null) {
+            // Update Water data
+            document.getElementById("amount_as_today_water").innerText =(
+              water_A_F_M /
+              water_unit_cost /
+              30
+            ).toFixed(2);          
+            document.getElementById("water-units").innerText = waterUnits;
+            document.getElementById("totel_bill_water").innerText = (
+              ((water_A_F_M /
+              water_unit_cost /
+              30)*waterUnits)*30
+            ).toFixed(2);
+            document.getElementById("water_P_B_F_M").innerText = (
+              ((water_A_F_M /
+              water_unit_cost)*waterUnits)*30
+            ).toFixed(2);
+          }
+
+          if (gas_A_F_M != "" && gas_unit_cost != "" && gasUnits != null) {
+            document.getElementById("amount_as_today_gas").innerText =(
+              gas_A_F_M /
+              gas_unit_cost /
+              30
+            ).toFixed(2);
+            
+            document.getElementById("gas-units").innerText = gasUnits;
+            document.getElementById("totel_bill_gas").innerText = (
+              ((gas_A_F_M /
+              gas_unit_cost /
+              30)*gasUnits)*30
+            ).toFixed(2);
+            document.getElementById("gas_P_B_F_M").innerText = (
+              ((gas_A_F_M /
+              gas_unit_cost)*gasUnits)*30
+            ).toFixed(2);
+          }
+
+          if(electricityUnits != null && waterUnits != null && gasUnits != null && electricity_A_F_M != "" && water_A_F_M != "" && gas_A_F_M != "" && electricity_unit_cost != "" && water_unit_cost != "" && gas_unit_cost != "") {
+            document.getElementById("ALL_E_W_G1").innerText = (
+
+            (((electricity_A_F_M /electricity_unit_cost)*electricityUnits)*30)+
+            (((water_A_F_M /water_unit_cost)*waterUnits)*30)+
+            (((gas_A_F_M /gas_unit_cost)*gasUnits)*30)
+            ).toFixed(2);
+
+            document.getElementById("ALL_E_W_G2").innerText = (
+              (((electricity_A_F_M /
+              water_unit_cost /
+              30)*electricityUnits)*30)+(((water_A_F_M /
+              water_unit_cost /
+              30)*waterUnits)*30)+(((gas_A_F_M /
+              gas_unit_cost /
+              30)*gasUnits)*30)
+            ).toFixed(2);
+              saveLocalData();
+              disableInputIfExpired();
+          }
+
+          // document.getElementById("electricity-bill").innerText = (
+          //   electricityUnits * 21
+          // ).toFixed(2);
+
+          // document.getElementById("water-consumption").innerText = (
+          //   waterUnits * 1.5
+          // ).toFixed(2);
+          // document.getElementById("water-bill").innerText = (
+          //   waterUnits * 12
+          // ).toFixed(2);
+
+          // Update Gas data
+
+          // document.getElementById("gas-bill").innerText = (
+          //   gasUnits * 20.5
+          // ).toFixed(2);
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+
+    // Fetch data every 10 seconds
+    setInterval(fetchData, 10000);
+  </script>
+  <script src="js/script.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</html>
